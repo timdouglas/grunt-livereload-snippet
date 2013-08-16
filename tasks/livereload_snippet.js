@@ -10,24 +10,22 @@
 
 module.exports = function(grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
-
   grunt.registerMultiTask('livereload_snippet', 'Add livereload js snippet to html', function() {
     var fs = require('fs'),
       done = this.async(),
       options = this.options({
         port: 35729,
         hostname: 'localhost',
-        file: 'index.html'
+        file: 'index.html',
+        add: true
       }),
       file = options.file,
       contents,
-      snippet_regex = /<script src\=\"\/\/.*\:[0-9]+\/livereload\.js\?snipver\"\><\/script>/gi,
+      snippet_regex = /<script src\=\"\/\/.*\:[0-9]+\/livereload\.js\?snipver\=1\"\><\/script>/gi,
       snippet = '<script src="//'+options.hostname+':'+options.port+'/livereload.js?snipver=1"></script>';
 
     //check the file is there...
-    fs.exists(file, function(exists){
+    fs.exists(file, function(exists) {
       if(exists) {
         // get file contents
         contents = grunt.file.read(file);
@@ -37,9 +35,13 @@ module.exports = function(grunt) {
           done(false);
         }
 
-        //remove existing and replace
+        //remove any existing snippets
         contents = contents.replace(snippet_regex, '');
-        contents += snippet;
+
+        //add snippet if allowed...
+        if(options.add === true) {
+          contents += snippet;
+        }
 
         var res = grunt.file.write(file, contents);
 
