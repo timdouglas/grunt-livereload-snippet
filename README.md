@@ -50,8 +50,8 @@ Default value: `35729`
 Port for livereload server.
 
 #### options.file
-Type: 'String'
-Default value: 'index.html'
+Type: `String`
+Default value: `index.html`
 
 Relative path (from grunt) to the file that will get the snippet
 
