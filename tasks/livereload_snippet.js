@@ -26,8 +26,6 @@ module.exports = function(grunt) {
       snippet_regex = /<script src\=\"\/\/.*\:[0-9]+\/livereload\.js\?snipver\"\><\/script>/gi,
       snippet = '<script src="//'+options.hostname+':'+options.port+'/livereload.js?snipver=1"></script>';
 
-    console.log("FILE IS ", this,file);
-
     //check the file is there...
     fs.exists(file, function(exists){
       if(exists) {
