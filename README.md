@@ -27,9 +27,19 @@ grunt.initConfig({
   livereload_snippet: {
     options: {
       // Task-specific options go here.
+      host: 'localhost', //livereload hostname
+      port: 35729, //livereload port
+      file: 'index.html', //file to add script snippet to, relative to gruntfile
+      add: true, //add to file
+      before: '</body>', //location in document to add snippet, before this string
+      //or:
+      after: '<head>', //location in document to add snippet, after this string
     },
-    your_target: {
-      // Target-specific file lists and/or options go here.
+    remove: {
+      // so you can remove the script snippet...
+      options: {
+        add: false
+      }
     },
   },
 })
@@ -54,6 +64,19 @@ Type: `String`
 Default value: `index.html`
 
 Relative path (from grunt) to the file that will get the snippet
+
+#### options.add
+Type: `Boolean`
+Default value: `true`
+
+Set this to false to remove the snippet from the file
+
+#### options.before & options.after
+Type: `String`
+Default value: `undefined`
+
+If either is set, adds snippet before or after specified location in document.
+Otherwise, just adds snippet to end of file.
 
 ## Release History
 _(Nothing yet)_
