@@ -7,11 +7,24 @@ This plugin requires Grunt `~0.4.1`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
+<!--
 ```shell
 npm install grunt-livereload-snippet --save-dev
 ```
+-->
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+Because it's not published on `npm` yet, add this git repo to your project's `package.json` file:
+
+```json
+{
+  "dependencies": {
+    "grunt-livereload-snippet": "https://github.com/timdouglas/grunt-livereload-snippet/tarball/master"
+  }
+}
+
+```
+
+Once the plugin has been installed (`npm install`), it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
 grunt.loadNpmTasks('grunt-livereload-snippet');
@@ -25,8 +38,8 @@ In your project's Gruntfile, add a section named `livereload_snippet` to the dat
 ```js
 grunt.initConfig({
   livereload_snippet: {
+    //task-specific options
     options: {
-      // Task-specific options go here.
       host: 'localhost', //livereload hostname
       port: 35729, //livereload port
       file: 'index.html', //file to add script snippet to, relative to gruntfile
@@ -36,7 +49,7 @@ grunt.initConfig({
       after: '<head>', //location in document to add snippet, after this string
     },
     remove: {
-      // so you can remove the script snippet...
+      //so you can remove the script snippet...
       options: {
         add: false
       }
