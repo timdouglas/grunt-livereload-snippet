@@ -32,20 +32,16 @@ module.exports = function(grunt) {
     livereload_snippet: {
       default_options: {
         options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
+        }
       },
       custom_options: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!',
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
+          port: 1234,
+          hostname: 'hello',
+          file: 'tmp/custom_options/test/hello',
+          add: true,
+        }
+      }
     },
 
     // Unit tests.

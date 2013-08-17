@@ -9,24 +9,28 @@
 'use strict';
 
 module.exports = function(grunt) {
-
   grunt.registerMultiTask('livereload_snippet', 'Add livereload js snippet to html', function() {
     var fs = require('fs'),
+      path = require('path'),
       done = this.async(),
       options = this.options({
         port: 35729,
         hostname: 'localhost',
         file: 'index.html',
-        add: true
+        add: true,
+        after: undefined,
+        before: undefined
       }),
-      file = options.file,
+      file = path.resolve(options.file),
       contents,
+      res,
       snippet_regex = /<script src\=\"\/\/.*\:[0-9]+\/livereload\.js\?snipver\=1\"\><\/script>/gi,
       snippet = '<script src="//'+options.hostname+':'+options.port+'/livereload.js?snipver=1"></script>';
 
     //check the file is there...
     fs.exists(file, function(exists) {
-      if(exists) {
+
+      if(exists === true) {
         // get file contents
         contents = grunt.file.read(file);
 
@@ -40,25 +44,34 @@ module.exports = function(grunt) {
 
         //add snippet if allowed...
         if(options.add === true) {
-          contents += snippet;
+          if(options.after !== undefined) {
+            contents = contents.relace(new RegExp(options.after, "g"), options.after + snippet);
+          } else if(options.before !== undefined) {
+            contents = contents.replace(new RegExp(options.before, "g"), snippet + options.before);
+          } else {
+            contents += snippet;
+          }
         }
 
         var res = grunt.file.write(file, contents);
 
         if(res) {
-          grunt.log.writeln("Added livereload snippet to "+file);
+          if(options.add === true) {
+            grunt.log.writeln("Added livereload snippet to "+file);
+          } else {
+            grunt.log.writeln("Remove livereload snippet from "+file);
+          }
+
           done();
         }
         else {
           grunt.warn("could not write to file "+file);
           done(false);
         }
-      }
-      else {
+      } else {
         grunt.warn("file "+file+" does not exist");
         done(false);
       }
-    });    
+    });
   });
-
 };
