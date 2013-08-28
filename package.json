@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "hello"
+    "url": "https://github.com/timdouglas/grunt-livereload-snippet"
   },
   "bugs": {
     "url": ""
