@@ -1,7 +1,7 @@
 {
   "name": "grunt-livereload-snippet",
   "description": "Add livereload js snippet to html",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "",
   "author": {
     "name": "timdouglas",
