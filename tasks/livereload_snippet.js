@@ -34,9 +34,14 @@ module.exports = function(grunt) {
         // get file contents
         contents = grunt.file.read(file);
 
-        if(!contents) {
+        if(contents === undefined) {
           grunt.warn("could not open file "+file);
           done(false);
+        }
+        
+        if(contents.length === 0 && options.add == false) {
+          grunt.log.writeln(file+" is empty, done.");
+          done();
         }
 
         //remove any existing snippets
