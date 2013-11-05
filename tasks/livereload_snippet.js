@@ -50,7 +50,7 @@ module.exports = function(grunt) {
         //add snippet if allowed...
         if(options.add === true) {
           if(options.after !== undefined) {
-            contents = contents.relace(new RegExp(options.after, "g"), options.after + snippet);
+            contents = contents.replace(new RegExp(options.after, "g"), options.after + snippet);
           } else if(options.before !== undefined) {
             contents = contents.replace(new RegExp(options.before, "g"), snippet + options.before);
           } else {
