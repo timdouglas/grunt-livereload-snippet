@@ -42,7 +42,6 @@ grunt.initConfig({
     options: {
       host: 'localhost', //livereload hostname
       port: 35729, //livereload port
-      file: 'index.html', //file to add script snippet to, relative to gruntfile
       add: true, //add to file
       before: '</body>', //location in document to add snippet, before this string
       //or:
@@ -52,7 +51,8 @@ grunt.initConfig({
       //so you can remove the script snippet...
       options: {
         add: false
-      }
+      },
+      src: ['path/to/file.ext']
     },
   },
 })
@@ -71,12 +71,6 @@ Type: `String`
 Default value: `35729`
 
 Port for livereload server.
-
-#### options.file
-Type: `String`
-Default value: `index.html`
-
-Relative path (from grunt) to the file that will get the snippet
 
 #### options.add
 Type: `Boolean`
