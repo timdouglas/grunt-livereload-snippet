@@ -40,7 +40,7 @@ grunt.initConfig({
   livereload_snippet: {
     //task-specific options
     options: {
-      host: 'localhost', //livereload hostname
+      hostname: 'localhost', //livereload hostname
       port: 35729, //livereload port
       add: true, //add to file
       before: '</body>', //location in document to add snippet, before this string
